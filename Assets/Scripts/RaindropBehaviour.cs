@@ -8,7 +8,7 @@ public class RaindropBehaviour : MonoBehaviour
     //public float jumpForce;
     public Vector2 jumpForce = new Vector2(0, 300);
 
-    private bool isJumping = false;   
+    public bool canJump = true; 
     private Rigidbody2D rb2d;
     
     // Start is called before the first frame update
@@ -18,20 +18,7 @@ public class RaindropBehaviour : MonoBehaviour
      
     }
 
-    private void Update()
-    {
-        bool isJumping = (Input.GetKeyUp(KeyCode.Space));
-
-        if (isJumping == true)
-        {
-            rb2d.velocity = Vector2.zero;
-            //jumpForce = 4f;
-            rb2d.AddForce(jumpForce);
-
-        }
-
-
-    }
+   
 
     // Update is called once per frame
     void FixedUpdate()
@@ -60,22 +47,31 @@ public class RaindropBehaviour : MonoBehaviour
             Debug.Log(newPos);
             transform.position = newPos;
         }
+        bool shouldJump = (Input.GetKeyUp(KeyCode.Space));
+
+        if (shouldJump && canJump)
+        {
+            rb2d.velocity = Vector2.zero;
+            rb2d.AddForce(jumpForce);
+
+
+        }
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Platform")
         {
-            isJumping = true;
+            canJump = true;
         }
            
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Platform")
         {
-            isJumping = false;
+            canJump = false;
         }
 
     }
