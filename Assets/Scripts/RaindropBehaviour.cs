@@ -5,9 +5,10 @@ using UnityEngine;
 public class RaindropBehaviour : MonoBehaviour
 {
     public float speed;
-    public float jumpForce;
+    //public float jumpForce;
+    public Vector2 jumpForce = new Vector2(0, 300);
 
-    private bool isJumping;   
+    private bool isJumping = false;   
     private Rigidbody2D rb2d;
     
     // Start is called before the first frame update
@@ -21,11 +22,12 @@ public class RaindropBehaviour : MonoBehaviour
     {
         bool isJumping = (Input.GetKeyUp(KeyCode.Space));
 
-        if (isJumping)
+        if (isJumping == true)
         {
             rb2d.velocity = Vector2.zero;
-            jumpForce = 4f;
-           
+            //jumpForce = 4f;
+            rb2d.AddForce(jumpForce);
+
         }
 
 
@@ -65,7 +67,7 @@ public class RaindropBehaviour : MonoBehaviour
     {
         if(collision.gameObject.tag == "Platform")
         {
-            isJumping = false;
+            isJumping = true;
         }
            
     }
@@ -73,7 +75,7 @@ public class RaindropBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Platform")
         {
-            isJumping = true;
+            isJumping = false;
         }
 
     }
