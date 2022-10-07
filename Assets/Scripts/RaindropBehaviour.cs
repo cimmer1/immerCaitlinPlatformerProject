@@ -5,26 +5,30 @@ using UnityEngine;
 public class RaindropBehaviour : MonoBehaviour
 {
     public float speed;
-
     public float jumpForce;
-    
-    bool touchingGround = true;
 
-   
+    private bool isJumping;   
     private Rigidbody2D rb2d;
+    
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        
+     
     }
 
-    void Update()
+    private void Update()
     {
-        if (touchingGround && Input.GetKey(KeyCode.Space))
+        bool isJumping = (Input.GetKeyUp(KeyCode.Space));
+
+        if (isJumping)
         {
-            GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpForce;      
+            rb2d.velocity = Vector2.zero;
+            jumpForce = 4f;
+           
         }
+
+
     }
 
     // Update is called once per frame
@@ -34,8 +38,10 @@ public class RaindropBehaviour : MonoBehaviour
         {
             float xMove = Input.GetAxis("Horizontal");
             Vector2 newPos = transform.position;
+           
 
             newPos.x += xMove * speed * Time.deltaTime;
+           
 
             Debug.Log(newPos);
             transform.position = newPos;
@@ -44,8 +50,10 @@ public class RaindropBehaviour : MonoBehaviour
         {
             float xMove = Input.GetAxis("Horizontal");
             Vector2 newPos = transform.position;
+            
 
             newPos.x += xMove * speed * Time.deltaTime;
+       
 
             Debug.Log(newPos);
             transform.position = newPos;
@@ -53,12 +61,21 @@ public class RaindropBehaviour : MonoBehaviour
 
     }
 
-    private void OnCollision2D(Collision collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if(collision.gameObject.tag == "Platform")
         {
-            touchingGround = false;
+            isJumping = false;
         }
+           
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Platform")
+        {
+            isJumping = true;
+        }
+
     }
 
 }
