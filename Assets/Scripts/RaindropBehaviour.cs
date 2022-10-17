@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class RaindropBehaviour : MonoBehaviour
 {
-    public float speed;
-    //public float jumpForce;
-    public Vector2 jumpForce = new Vector2(0, 300);
+    public float Speed;
+    public Vector2 JumpForce = new Vector2(0, 300);
+    public bool CanJump = true;
+    public WaterBlastBehaviour WaterBlastPrefab;
 
-    public bool canJump = true; 
     private Rigidbody2D rb2d;
     
     // Start is called before the first frame update
@@ -18,9 +18,22 @@ public class RaindropBehaviour : MonoBehaviour
      
     }
 
-   
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            waterBlastShoot();
+        }
 
-    // Update is called once per frame
+        bool shouldJump = (Input.GetKeyUp(KeyCode.Space));
+
+        if (shouldJump && CanJump)
+        {
+            rb2d.velocity = Vector2.zero;
+            rb2d.AddForce(JumpForce);
+        }
+    }
+
     void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
@@ -29,7 +42,7 @@ public class RaindropBehaviour : MonoBehaviour
             Vector2 newPos = transform.position;
            
 
-            newPos.x += xMove * speed * Time.deltaTime;
+            newPos.x += xMove * Speed * Time.deltaTime;
            
 
             Debug.Log(newPos);
@@ -41,29 +54,24 @@ public class RaindropBehaviour : MonoBehaviour
             Vector2 newPos = transform.position;
             
 
-            newPos.x += xMove * speed * Time.deltaTime;
+            newPos.x += xMove * Speed * Time.deltaTime;
        
 
             Debug.Log(newPos);
             transform.position = newPos;
         }
-        bool shouldJump = (Input.GetKeyUp(KeyCode.Space));
-
-        if (shouldJump && canJump)
-        {
-            rb2d.velocity = Vector2.zero;
-            rb2d.AddForce(jumpForce);
-
-
-        }
 
     }
-
+    private void waterBlastShoot()
+    {
+        WaterBlastBehaviour waterblast = Instantiate(WaterBlastPrefab);
+       
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Platform")
         {
-            canJump = true;
+            CanJump = true;
         }
            
     }
@@ -71,7 +79,7 @@ public class RaindropBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Platform")
         {
-            canJump = false;
+            CanJump = false;
         }
 
     }
