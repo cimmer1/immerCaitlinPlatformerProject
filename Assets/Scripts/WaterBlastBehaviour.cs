@@ -12,6 +12,7 @@ public class WaterBlastBehaviour : MonoBehaviour
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        Project(Vector2.right);
     }
 
     public void Project(Vector2 direction)
