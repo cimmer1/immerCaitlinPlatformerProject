@@ -146,5 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d8a5e0eb8777e94dade95bcc332c104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Speed: 3
   Rock: {fileID: 6683255764062505732}
   GameControllerInstance: {fileID: 0}

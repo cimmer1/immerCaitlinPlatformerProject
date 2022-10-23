@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -13,11 +14,10 @@ public class GameController : MonoBehaviour
     public Text TextHearts;
 
     public GameObject RestartGameText;
-    public GameObject Rock;
+  
 
     void Start()
     {
-        //InvokeRepeating("SpawnRock", );
         LoseHearts = 3;
         TextHearts.text = "3";
     }
@@ -35,14 +35,7 @@ public class GameController : MonoBehaviour
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
-    }
-
-
-    public void SpawnMeteor()
-    {
-        //Vector2 randomSpawnPosition = new Vector2(Random.Range(0, 0), Random.Range(0, 0));
-        //Instantiate(Rock, randomSpawnPosition, Quaternion.identity);
-    }
+    } 
 
     public void PlayerHearts()
     {

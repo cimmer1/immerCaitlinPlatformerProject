@@ -110,6 +110,11 @@ public class RaindropBehaviour : MonoBehaviour
         {
             GameControllerInstance.LoseHearts--;
         }
+
+        if (collision.gameObject.tag == "Rock")
+        {
+            GameControllerInstance.LoseHearts--;
+        }
            
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -121,7 +126,7 @@ public class RaindropBehaviour : MonoBehaviour
 
 
     }
-
+    
     private IEnumerator Dash()
     {
         canDash = false;
