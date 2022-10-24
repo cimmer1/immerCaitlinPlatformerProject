@@ -5,8 +5,8 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject RockPrefab;
-    public float secondsBetweenSpawns = 4;
-    float nextSpawnTime;
+    public float SecondsBetweenSpawns = 4;
+    private float nextSpawnTime;
     
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
         if (Time.time > nextSpawnTime)
         {
             //next spawn time is equal to current time + the seconds between spawn
-            nextSpawnTime = Time.time + secondsBetweenSpawns;
+            nextSpawnTime = Time.time + SecondsBetweenSpawns;
             Vector2 spawnPosition = new Vector2(Random.Range(-7, 20), Random.Range(4, 4));
             Instantiate(RockPrefab, spawnPosition, Quaternion.identity);
         }

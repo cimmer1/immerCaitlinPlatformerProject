@@ -7,30 +7,30 @@ using Debug = UnityEngine.Debug;
 public class MushroomBehaviour : MonoBehaviour
 {
     public GameObject Mushroom;
-    public float moveSpeed;
+    public float MoveSpeed;
     //how close player can get before mushroom chases
     public float ChaseDistance;
     //keep track of player's position 
     public Transform playerTransform;
     //mushroom is chasing/not chasing player
-    public bool isChasing;
+    public bool IsChasing;
     public GameController GameControllerInstance;
 
     void Update()
     {
-        if (isChasing)
+        if (IsChasing)
         {
             //if the enemy's position is greater than the player's position 
             if (transform.position.x > playerTransform.position.x)
             {
                 //if the player is to the left of the enemy, it will move left towards the player 
-                transform.position += Vector3.left * moveSpeed * Time.deltaTime;
+                transform.position += Vector3.left * MoveSpeed * Time.deltaTime;
             }
 
             if (transform.position.x < playerTransform.position.x)
             {
                 //if the player is to the right of the enemy, it will move right towards the player 
-                transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+                transform.position += Vector3.right * MoveSpeed * Time.deltaTime;
             }
         }
 
@@ -41,7 +41,7 @@ public class MushroomBehaviour : MonoBehaviour
             if (Vector2.Distance(transform.position, playerTransform.position) < ChaseDistance)
             {
                 //if the player is within chase distance, the enemy will chase 
-                isChasing = true;
+                IsChasing = true;
             }
         }
     }

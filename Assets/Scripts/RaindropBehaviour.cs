@@ -21,7 +21,7 @@ public class RaindropBehaviour : MonoBehaviour
     public WaterBlastBehaviour WaterBlastPrefab;
 
     private Rigidbody2D rb2d;
-    public float direction;
+    public float Direction;
     public bool IsMoving;
     public static bool FaceRight; 
     // Start is called before the first frame update
@@ -61,12 +61,12 @@ public class RaindropBehaviour : MonoBehaviour
         {
             if(Input.GetAxis("Horizontal") < 0)
             {
-                direction = -1;
+                Direction = -1;
                 FaceRight = false;
             }
             else
             {
-                direction = 1;
+                Direction = 1;
                 FaceRight = true;
             }
             IsMoving = true; 
@@ -138,7 +138,7 @@ public class RaindropBehaviour : MonoBehaviour
         float originalGravity = rb2d.gravityScale;
         rb2d.gravityScale = 0f;
         //transform.localscale.x indicates the direction the player is facing 
-        rb2d.velocity = new Vector2(transform.localScale.x * dashingPower * direction, 0f);
+        rb2d.velocity = new Vector2(transform.localScale.x * dashingPower * Direction, 0f);
         //player can't dash forever
         yield return new WaitForSeconds(dashingTime);
         rb2d.gravityScale = originalGravity;
