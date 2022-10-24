@@ -23,10 +23,12 @@ public class RaindropBehaviour : MonoBehaviour
     private Rigidbody2D rb2d;
     public float direction;
     public bool IsMoving;
+    public static bool FaceRight; 
     // Start is called before the first frame update
     private void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        GameControllerInstance = FindObjectOfType<GameController>();
      
     }
 
@@ -59,11 +61,13 @@ public class RaindropBehaviour : MonoBehaviour
         {
             if(Input.GetAxis("Horizontal") < 0)
             {
-                direction = -1; 
+                direction = -1;
+                FaceRight = false;
             }
             else
             {
                 direction = 1;
+                FaceRight = true;
             }
             IsMoving = true; 
         }
@@ -106,7 +110,7 @@ public class RaindropBehaviour : MonoBehaviour
             CanJump = true;
         }
 
-        if (collision.gameObject.tag == "Mushroom")
+        if (collision.gameObject.tag == "Enemy")
         {
             GameControllerInstance.LoseHearts--;
         }

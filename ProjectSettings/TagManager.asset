@@ -8,6 +8,7 @@ TagManager:
   - Water Blast
   - Rock
   - Enemy
+  - Collider
   layers:
   - Default
   - TransparentFX

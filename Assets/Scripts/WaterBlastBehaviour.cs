@@ -12,7 +12,15 @@ public class WaterBlastBehaviour : MonoBehaviour
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
-        Project(Vector2.right);
+        if (RaindropBehaviour.FaceRight)
+        {
+            Project(Vector2.right);
+        }
+        else
+        {
+            Project(Vector2.left);
+        }
+        
     }
 
     public void Project(Vector2 direction)
@@ -20,9 +28,12 @@ public class WaterBlastBehaviour : MonoBehaviour
         //once waterblast is fired it will move in that direction * the speed
         rb2d.AddForce(direction * Speed);
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.tag == "Collider")
+        {
+            Destroy(gameObject);
+        }
     }
+    
 }

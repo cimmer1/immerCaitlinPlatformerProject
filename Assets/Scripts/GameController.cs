@@ -18,14 +18,15 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        RestartGameText.SetActive(false);
         LoseHearts = 3;
-        TextHearts.text = "3";
+        //TextHearts.text = "3";
     }
 
     void Update()
     {
         PlayerHearts();
-        TextHearts.text = LoseHearts.ToString();
+        TextHearts.text = "Player Hearts: " + LoseHearts.ToString();
 
         if (Input.GetKey(KeyCode.Escape))
         {
