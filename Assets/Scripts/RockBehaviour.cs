@@ -26,5 +26,15 @@ public class RockBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (collision.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Lava")
+        {
+            Destroy(gameObject);
+        }
     }
 }

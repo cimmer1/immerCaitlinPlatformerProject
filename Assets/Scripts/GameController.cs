@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     public Text TextHearts;
 
     public GameObject RestartGameText;
+    public GameObject WinScreenText;
   
 
     void Start()
@@ -44,6 +45,15 @@ public class GameController : MonoBehaviour
         {
             RestartGameText.SetActive(true);
             SceneManager.LoadScene(0);
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Door3")
+        {
+            WinScreenText.SetActive(true);
+            SceneManager.LoadScene (0);
         }
     }
 

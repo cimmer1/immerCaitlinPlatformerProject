@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RaindropBehaviour : MonoBehaviour
 {
@@ -23,7 +24,9 @@ public class RaindropBehaviour : MonoBehaviour
     private Rigidbody2D rb2d;
     public float Direction;
     public bool IsMoving;
-    public static bool FaceRight; 
+    public static bool FaceRight;
+    public AudioClip ShootSound;
+    public AudioClip HitSound;
     // Start is called before the first frame update
     private void Start()
     {
@@ -102,6 +105,8 @@ public class RaindropBehaviour : MonoBehaviour
     private void waterBlastShoot()
     {
         WaterBlastBehaviour waterblast = Instantiate(WaterBlastPrefab, SpawnPoint.transform.position, Quaternion.identity);
+        Vector3 camPos = Camera.main.transform.position;
+        AudioSource.PlayClipAtPoint(ShootSound, camPos);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -113,13 +118,34 @@ public class RaindropBehaviour : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             GameControllerInstance.LoseHearts--;
+            Vector3 camPos = Camera.main.transform.position;
+            AudioSource.PlayClipAtPoint(HitSound, camPos);
         }
 
         if (collision.gameObject.tag == "Rock")
         {
             GameControllerInstance.LoseHearts--;
+            Vector3 camPos = Camera.main.transform.position;
+            AudioSource.PlayClipAtPoint(HitSound, camPos);
         }
-           
+
+        if (collision.gameObject.tag == "Lava")
+        {
+            GameControllerInstance.LoseHearts--;
+            Vector3 camPos = Camera.main.transform.position;
+            AudioSource.PlayClipAtPoint(HitSound, camPos);
+        }
+
+        if (collision.gameObject.tag == "Door")
+        {
+            SceneManager.LoadScene(2);
+        }
+
+        if (collision.gameObject.tag == "Door2")
+        {
+            SceneManager.LoadScene(3);
+        }
+
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -130,6 +156,8 @@ public class RaindropBehaviour : MonoBehaviour
 
 
     }
+
+  
     
     private IEnumerator Dash()
     {
