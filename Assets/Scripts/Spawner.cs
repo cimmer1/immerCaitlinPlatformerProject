@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour
         {
             //next spawn time is equal to current time + the seconds between spawn
             nextSpawnTime = Time.time + SecondsBetweenSpawns;
-            Vector2 spawnPosition = new Vector2(Random.Range(-3, 40), Random.Range(10, 10));
+            Vector2 spawnPosition = new Vector2(Random.Range(-6, 5), Random.Range(3, 3));
             Instantiate(RockPrefab, spawnPosition, Quaternion.identity);
         }
       

@@ -1491,8 +1491,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec967967314e6d45ba65826a881a28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3
-  JumpForce: {x: 0, y: 300}
+  Speed: 5
+  JumpForce: {x: 0, y: 320}
   SpawnPoint: {fileID: 1678625804}
   CanJump: 1
   GameControllerInstance: {fileID: 1704968703}

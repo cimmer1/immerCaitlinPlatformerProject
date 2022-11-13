@@ -48,7 +48,7 @@ public class RaindropBehaviour : MonoBehaviour
             waterBlastShoot();
         }
 
-        bool shouldJump = (Input.GetKeyUp(KeyCode.Space));
+        bool shouldJump = (Input.GetKeyDown(KeyCode.Space));
 
         if (shouldJump && CanJump)
         {
