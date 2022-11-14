@@ -115,6 +115,11 @@ public class RaindropBehaviour : MonoBehaviour
             CanJump = true;
         }
 
+        if(collision.gameObject.tag == "Lava")
+        {
+            CanJump = true;
+        }
+
         if (collision.gameObject.tag == "Enemy")
         {
             GameControllerInstance.LoseHearts--;
@@ -144,6 +149,11 @@ public class RaindropBehaviour : MonoBehaviour
         if (collision.gameObject.tag == "Door2")
         {
             SceneManager.LoadScene(3);
+        }
+
+        if (collision.gameObject.tag == "Door3")
+        {
+            SceneManager.LoadScene(4);
         }
 
     }

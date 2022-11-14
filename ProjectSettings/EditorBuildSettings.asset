@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Forest Level.unity
     guid: 15d4f66d13f5d994c9a2cc09b71537ee
+  - enabled: 1
+    path: Assets/Scenes/End Scene.unity
+    guid: cad0119d3e4bc094fb9e967035b21f92
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
