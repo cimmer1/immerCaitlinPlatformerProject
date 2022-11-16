@@ -13,6 +13,7 @@ TagManager:
   - Door
   - Door2
   - Door3
+  - Background
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - 'Player '
   - Water Blast
   - Enemy
-  - 
-  - 
+  - CanJump
+  - Background
   - 
   - 
   - 

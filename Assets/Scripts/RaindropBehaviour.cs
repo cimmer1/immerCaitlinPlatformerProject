@@ -9,6 +9,8 @@ public class RaindropBehaviour : MonoBehaviour
     public float Speed;
     public Vector2 JumpForce = new Vector2(0, 300);
     public GameObject SpawnPoint;
+    public float RaycastDistance;
+    public LayerMask RaycastLayers;
 
     private bool canDash = true;
     private bool isDashing;
@@ -37,6 +39,15 @@ public class RaindropBehaviour : MonoBehaviour
 
     private void Update()
     {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, RaycastDistance, RaycastLayers);
+        if (hit == true)
+        {
+            CanJump = true;
+        }
+        else
+        {
+            CanJump = false;
+        }
         //prevents player from moving/jumping while dashing 
         if (isDashing)
         {
@@ -112,12 +123,12 @@ public class RaindropBehaviour : MonoBehaviour
     {
         if(collision.gameObject.tag == "Platform")
         {
-            CanJump = true;
+            //CanJump = true;
         }
 
         if(collision.gameObject.tag == "Lava")
         {
-            CanJump = true;
+            //CanJump = true;
         }
 
         if (collision.gameObject.tag == "Enemy")
@@ -161,7 +172,7 @@ public class RaindropBehaviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "Platform")
         {
-            CanJump = false;
+            //CanJump = false;
         }
 
 
