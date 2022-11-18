@@ -34,6 +34,10 @@ public class WaterBlastBehaviour : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Destroy(gameObject);
+        }
     }
     
 }
