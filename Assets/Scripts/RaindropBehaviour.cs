@@ -11,6 +11,7 @@ public class RaindropBehaviour : MonoBehaviour
     public GameObject SpawnPoint;
     public float RaycastDistance;
     public LayerMask RaycastLayers;
+    public TrailRenderer TrailRenderer;
 
     private bool canDash = true;
     private bool isDashing;
@@ -188,12 +189,14 @@ public class RaindropBehaviour : MonoBehaviour
         rb2d.gravityScale = 0f;
         //transform.localscale.x indicates the direction the player is facing 
         rb2d.velocity = new Vector2(transform.localScale.x * dashingPower * Direction, 0f);
+        TrailRenderer.emitting = true;
         //player can't dash forever
         yield return new WaitForSeconds(dashingTime);
         rb2d.gravityScale = originalGravity;
         isDashing = false;
         //dashing goes on a cooldown
         yield return new WaitForSeconds(dashingCooldown);
+        TrailRenderer.emitting = false;
         canDash = true;
     }
 
