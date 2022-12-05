@@ -14,6 +14,7 @@ TagManager:
   - Door2
   - Door3
   - Background
+  - GameMusic
   layers:
   - Default
   - TransparentFX
@@ -53,4 +54,7 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 548036937
     locked: 0
